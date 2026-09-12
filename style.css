@@ -53,13 +53,7 @@ img{display:block;max-width:100%}
 header.nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:78px}
 .logo{display:flex;align-items:center;gap:11px}
-.logo-mark{
-  width:40px;height:40px;border-radius:9px;display:grid;place-items:center;
-  background:linear-gradient(150deg,var(--gold),#d9bd7e);color:#fff;
-  font-family:'Poppins';font-weight:800;font-size:1.3rem;
-}
-.logo-text{font-family:'Poppins';font-weight:700;font-size:1.05rem;color:var(--ink);letter-spacing:.02em;line-height:1}
-.logo-text span{display:block;font-size:.62rem;font-weight:500;letter-spacing:.34em;color:var(--gold)}
+.logo img{height:42px;width:auto;display:block}
 .nav-links{display:flex;gap:30px;align-items:center}
 .nav-links a{font-family:'Poppins';font-weight:500;font-size:.9rem;color:#3c465c;transition:color .15s}
 .nav-links a:hover,.nav-links a.active{color:var(--gold)}
@@ -182,7 +176,7 @@ header.nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px so
 footer{background:var(--navy-deep);color:#c3cbd9;padding:64px 0 0}
 .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.4fr;gap:44px;padding-bottom:48px}
 .foot-logo{display:flex;align-items:center;gap:11px;margin-bottom:20px}
-.foot-logo .logo-text,.foot-logo .logo-text span{color:#fff}
+.foot-logo img{height:36px;width:auto;display:block}
 .foot-about p{font-size:.88rem;color:#9aa6bb;margin-bottom:22px;line-height:1.7}
 .foot-contact{display:flex;flex-direction:column;gap:12px}
 .foot-contact a{display:flex;align-items:center;gap:11px;font-size:.86rem;color:#b7c0d1}
@@ -230,7 +224,14 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
   .apply-grid{grid-template-columns:1fr!important}
 }
 @media(max-width:640px){
-  .stats-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .stats{padding:32px 0}
+  .stat{gap:10px}
+  .stat-ico{width:38px;height:38px;border-radius:10px}
+  .stat-ico svg{width:18px;height:18px}
+  .stat-num{font-size:1.35rem}
+  .stat-label{font-size:.76rem;margin:3px 0 2px}
+  .stat-desc{font-size:.68rem;line-height:1.35}
   .cards-3{grid-template-columns:1fr}
   .hero-inner{padding:64px 0 68px}
   .hero h1{font-size:2rem}
@@ -247,12 +248,17 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
 /* ===== KARİYER SAYFASI ===== */
 .section-alt{background:var(--bg);padding:78px 0}
 .section-white{background:#fff;padding:78px 0}
+@media(max-width:640px){
+  .section-alt,.section-white{padding:26px 0}
+}
 
 /* Yönetim ekibi kartları */
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
 .team-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);text-align:center;padding-bottom:24px;transition:transform .2s,box-shadow .2s}
 .team-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
-.team-photo{height:220px}
+.team-photo{aspect-ratio:4/5;height:auto}
+.team-photo-placeholder{display:flex;align-items:center;justify-content:center;background:var(--navy)}
+.team-photo-placeholder span{font-family:'Poppins';font-weight:700;font-size:2.4rem;letter-spacing:.04em;color:var(--gold)}
 .team-photo img{width:100%;height:100%;object-fit:cover}
 .team-body{padding:20px 20px 0}
 .team-body h3{font-size:1.05rem;font-weight:600;margin-bottom:4px}
@@ -387,8 +393,8 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
 .check-ico{flex:none;width:24px;height:24px;border-radius:50%;background:#e8f6ee;color:#2fa360;display:grid;place-items:center}
 .check-ico svg{width:14px;height:14px}
 .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.cert-badge{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 10px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:var(--shadow)}
-.cert-badge img{width:100%;height:64px;object-fit:contain;margin-bottom:10px}
+.cert-badge{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:var(--shadow)}
+.cert-badge img{width:100%;height:180px;object-fit:contain;margin-bottom:10px}
 .cert-badge span{font-size:.7rem;font-weight:600;color:var(--ink);font-family:'Poppins';line-height:1.4}
 
 @media(max-width:992px){
@@ -399,7 +405,29 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
   .timeline-grid::before{display:none}
 }
 @media(max-width:640px){
-  .timeline-grid,.principle-grid,.stats-band-grid,.cert-grid{grid-template-columns:1fr!important}
+  .principle-grid{grid-template-columns:1fr!important}
+  .timeline-grid,.stats-band-grid{grid-template-columns:repeat(2,1fr)!important;gap:16px}
+  .cert-grid{grid-template-columns:1fr!important}
+  .timeline-item{padding:0}
+  .timeline-ico{width:44px;height:44px;margin:0 auto 10px}
+  .timeline-ico svg{width:19px;height:19px}
+  .timeline-year{font-size:.95rem;margin-bottom:3px}
+  .timeline-item h4{font-size:.88rem;margin-bottom:4px}
+  .timeline-item p{font-size:.74rem;line-height:1.4}
+  .stats-band{padding:32px 0}
+  .stats-band-ico{width:38px;height:38px;margin:0 auto 8px}
+  .stats-band-ico svg{width:17px;height:17px}
+  .stats-band-num{font-size:1.3rem}
+  .stats-band-label{font-size:.72rem}
+  .cert-badge img{height:260px}
+  .page-intro{padding:0 0 22px}
+  .page-intro h1{font-size:1.6rem;margin-bottom:10px}
+  .page-intro>p{font-size:.9rem;margin-bottom:16px}
+  .page-intro-img{height:190px}
+  .intro-grid{gap:22px}
+  .intro-visual{height:200px}
+  .mv-card{padding:26px 22px}
+  .mv-grid{gap:16px}
 }
 
 /* ===== HİZMETLERİMİZ SAYFASI ===== */
@@ -469,7 +497,13 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
 }
 @media(max-width:640px){
   .svc-check-grid{grid-template-columns:1fr!important}
-  .process-grid{grid-template-columns:1fr!important}
+  .process-grid{grid-template-columns:repeat(2,1fr)!important;gap:22px 16px}
+  .process-circle-wrap{width:52px;margin:0 auto 10px}
+  .process-circle{width:52px;height:52px}
+  .process-circle svg{width:22px;height:22px}
+  .process-num{width:20px;height:20px;font-size:.66rem}
+  .process-item h4{font-size:.88rem;margin-bottom:4px}
+  .process-item p{font-size:.74rem;line-height:1.4}
 }
 
 /* ===== MAKİNE KİRALAMA SAYFASI ===== */
@@ -623,6 +657,7 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
 .region-icon-card .region-link{justify-content:center}
 .region-icon{width:52px;height:52px;border-radius:12px;background:var(--icon-tile);color:var(--gold);display:grid;place-items:center;margin:0 auto 18px}
 .region-icon svg{width:24px;height:24px}
+.region-grid-single{grid-template-columns:1fr!important;max-width:340px;margin:0 auto}
 
 .cta-ico.wa-ico{background:rgba(37,211,102,.18);color:#25d366}
 
