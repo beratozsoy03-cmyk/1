@@ -37,7 +37,7 @@ img{display:block;max-width:100%}
 .btn{
   display:inline-flex;align-items:center;gap:9px;font-family:'Poppins';font-weight:600;
   font-size:.95rem;padding:14px 26px;border-radius:9px;cursor:pointer;border:none;
-  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  white-space:nowrap;transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
 }
 .btn svg{width:17px;height:17px}
 .btn-gold{background:var(--gold);color:#fff}
@@ -52,12 +52,37 @@ img{display:block;max-width:100%}
 /* ===== NAVBAR ===== */
 header.nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:78px}
-.logo{display:flex;align-items:center;gap:11px}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
 .logo img{height:42px;width:auto;display:block}
-.nav-links{display:flex;gap:30px;align-items:center}
-.nav-links a{font-family:'Poppins';font-weight:500;font-size:.9rem;color:#3c465c;transition:color .15s}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links a{font-family:'Poppins';font-weight:500;font-size:.87rem;color:#3c465c;white-space:nowrap;transition:color .15s}
 .nav-links a:hover,.nav-links a.active{color:var(--gold)}
-.nav-right{display:flex;align-items:center;gap:18px}
+.nav-right{display:flex;align-items:center;gap:14px;flex:none}
+.nav-app-btn{font-size:.82rem;padding:11px 16px}
+.nav-app-link{display:none}
+
+/* İletişim > Kariyer alt menüsü */
+.nav-item-drop{position:relative}
+.nav-drop-trigger{display:inline-flex;align-items:center;gap:3px}
+.nav-drop-trigger a{font-family:'Poppins';font-weight:500;font-size:.87rem;color:#3c465c;white-space:nowrap;transition:color .15s}
+.nav-drop-trigger a:hover,.nav-drop-trigger a.active{color:var(--gold)}
+.nav-drop-caret{background:none;border:none;padding:2px;cursor:pointer;color:#3c465c;display:inline-flex;align-items:center}
+.nav-drop-caret svg{width:13px;height:13px;transition:transform .15s}
+.nav-item-drop:hover .nav-drop-caret,.nav-item-drop.open .nav-drop-caret{color:var(--gold)}
+.nav-item-drop:hover .nav-drop-caret svg,.nav-item-drop.open .nav-drop-caret svg{transform:rotate(180deg)}
+.nav-dropdown{
+  position:absolute;top:100%;left:0;padding-top:14px;min-width:140px;
+  opacity:0;visibility:hidden;transition:opacity .15s ease,visibility .15s;z-index:60;
+}
+.nav-dropdown-inner{
+  background:#fff;border:1px solid var(--line);border-radius:10px;
+  box-shadow:var(--shadow);padding:6px;min-width:140px;
+}
+.nav-item-drop:hover .nav-dropdown,
+.nav-item-drop:focus-within .nav-dropdown,
+.nav-item-drop.open .nav-dropdown{opacity:1;visibility:visible}
+.nav-dropdown-inner a{display:block;padding:8px 12px;border-radius:6px;font-size:.87rem;font-weight:500;white-space:nowrap;color:#3c465c}
+.nav-dropdown-inner a:hover,.nav-dropdown-inner a.active{background:var(--bg);color:var(--gold)}
 .burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px}
 .burger span{width:24px;height:2px;background:var(--ink);border-radius:2px}
 
@@ -213,6 +238,15 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
 @media(max-width:992px){
   .nav-links{display:none}
   .burger{display:flex}
+  .nav-app-btn{display:none}
+  .nav-app-link{display:block}
+  .nav-item-drop{position:static}
+  .nav-dropdown{
+    position:static;opacity:1;visibility:visible;padding-top:0;
+    margin:2px 0 4px 14px;display:none;
+  }
+  .nav-dropdown-inner{background:none;border:none;box-shadow:none;padding:0}
+  .nav-item-drop.open .nav-dropdown{display:block}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:26px}
   .cards-3{grid-template-columns:repeat(2,1fr)}
   .why-grid{grid-template-columns:1fr;gap:40px}
@@ -265,6 +299,7 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
 .team-card-photo img{width:100%;height:auto;display:block}
 
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.team-grid-3{grid-template-columns:repeat(3,1fr);max-width:820px;margin:0 auto}
 .team-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);text-align:center;padding-bottom:24px;transition:transform .2s,box-shadow .2s}
 .team-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
 .team-photo{aspect-ratio:4/5;height:auto}
@@ -751,10 +786,8 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
 .app-promo-feature{display:flex;align-items:center;gap:12px;color:#e4e8f0;font-size:.92rem}
 .app-promo-feature svg{flex:none;width:20px;height:20px;color:var(--gold)}
 .app-promo-visual{display:flex;justify-content:center}
-.app-phone{width:210px;height:420px;border-radius:36px;background:linear-gradient(160deg,#1d3159,#0e1930);border:6px solid rgba(255,255,255,.08);box-shadow:0 30px 60px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;position:relative}
-.app-phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:56px;height:6px;border-radius:4px;background:rgba(255,255,255,.15)}
-.app-phone-icon{width:84px;height:84px;border-radius:22px;background:linear-gradient(150deg,var(--gold),#d9bd7e);display:grid;place-items:center;box-shadow:0 12px 28px rgba(195,161,92,.4)}
-.app-phone-icon svg{width:42px;height:42px;color:#fff}
+.app-phone-photo{width:230px;aspect-ratio:945/2048;border-radius:36px;overflow:hidden;border:6px solid rgba(255,255,255,.08);box-shadow:0 30px 60px rgba(0,0,0,.4)}
+.app-phone-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Kurumsal — dijital dönüşüm ile bütünleşik kompakt uygulama kartı */
 .app-strip{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:44px}
@@ -767,16 +800,53 @@ footer h4{color:#fff;font-family:'Poppins';font-weight:600;font-size:1rem;margin
 @media(max-width:992px){
   .app-promo-grid{grid-template-columns:1fr!important;gap:34px}
   .app-promo-visual{order:-1}
-  .app-phone{width:170px;height:320px}
+  .app-phone-photo{width:190px}
 }
 @media(max-width:640px){
   .app-promo{padding:44px 0}
   .app-promo-text h2{font-size:1.5rem}
-  .app-phone{width:140px;height:260px;border-radius:26px}
-  .app-phone-icon{width:64px;height:64px;border-radius:16px}
-  .app-phone-icon svg{width:32px;height:32px}
+  .app-phone-photo{width:150px;border-radius:26px}
   .app-strip{padding:20px 20px;margin-top:28px;flex-direction:column;align-items:flex-start}
   .app-strip-text{gap:12px}
   .app-strip .app-download-wrap{align-self:stretch}
   .app-strip .app-download-btn{width:100%;justify-content:center}
+}
+
+/* ===== MOBİL UYGULAMA SAYFASI ===== */
+.mobile-hero{background:var(--navy-deep);color:#fff;padding:86px 0 76px;overflow:hidden}
+.mobile-hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.mobile-hero-text .eyebrow{text-align:left}
+.mobile-hero-text h1{color:#fff;font-size:2.6rem;font-weight:700;margin-bottom:18px}
+.mobile-hero-text>p{color:#cdd4e0;font-size:1.05rem;margin-bottom:28px;max-width:520px}
+.mobile-hero-visual{display:flex;justify-content:center}
+.app-phone-photo-lg{width:260px}
+
+.app-banner-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.app-banner-grid .eyebrow{text-align:left}
+.app-banner-grid .section-title{text-align:left}
+.app-banner-grid .section-title-line{margin:0 0 20px}
+.app-banner-visual{display:flex;justify-content:center}
+
+.app-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.app-feature-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}
+.app-feature-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.app-feature-shot{aspect-ratio:945/2048;background:#eef1f7}
+.app-feature-shot img{width:100%;height:100%;object-fit:cover;display:block}
+.app-feature-body{padding:20px 22px}
+.app-feature-body h3{font-size:1.05rem;font-weight:600;margin-bottom:8px}
+.app-feature-body p{font-size:.88rem;color:var(--muted);line-height:1.5}
+
+@media(max-width:992px){
+  .mobile-hero-grid{grid-template-columns:1fr!important;gap:34px}
+  .mobile-hero-visual{order:-1}
+  .app-phone-photo-lg{width:210px}
+  .app-banner-grid{grid-template-columns:1fr!important;gap:30px}
+  .app-banner-visual{order:-1}
+  .app-feature-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .mobile-hero{padding:44px 0}
+  .mobile-hero-text h1{font-size:1.8rem}
+  .app-phone-photo-lg{width:170px}
+  .app-feature-grid{grid-template-columns:1fr!important}
 }
